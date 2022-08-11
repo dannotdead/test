@@ -1,6 +1,6 @@
-###SPA created with Create React App
+SPA created with Create React App
 
-####Also in use:
+Also in use:
 * react-bootstrap
 * moment
 * react-json-tree
