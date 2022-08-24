@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import {JSONTree} from 'react-json-tree';
+import React, {useCallback, useState} from 'react';
 import ModalImage from '../ModalImage';
-import {theme} from '../../utils/const';
+import moment from 'moment';
 
 import './TreeList.css';
 
@@ -11,30 +10,51 @@ const TreeList = ({ store }) => {
 
 	const handleShow = () => setShow(true)
 
+	const handleClick = useCallback((event) => {
+		event.target.parentElement.querySelector('.nested').classList.toggle('active')
+		event.target.classList.toggle('caret-down')
+	}, [])
+
 	return (
 		<>
-			<JSONTree
-				data={store}
-				theme={theme}
-				valueRenderer={(raw) => {
-					return (
-						(typeof raw === 'string' && raw.includes('/')) ?
-							<img
-								src={raw.replaceAll('"', '')}
-								alt=''
-								className='tree-image'
-								onClick={() => {
-									handleShow()
-									setModalData(raw.replaceAll('"', ''))
-								}}
-							/> :
-							<em>{ raw }</em>
-					)}}
-				collectionLimit={15}
-				getItemString={(type, data) => {
-					if (data.image) return (<span>{data.image.split('/')[1]}</span>)
-				}}
-			/>
+			<ul className='tree-list'>
+				<li>
+					<span
+						className='caret'
+						onClick={(event) => handleClick(event)}
+					>
+						Root Element
+					</span>
+					<ul className='nested'>
+						{store && store.map(item =>
+							<li key={item.image}>
+								<span
+									className='caret'
+									onClick={(event) => handleClick(event)}
+								>
+									{item.image.split('/')[1]}
+								</span>
+								<ul className='nested'>
+									<li className='tree-list-item'>
+										<img
+											src={item.image}
+											alt=''
+											className='tree-image'
+											onClick={() => {
+												handleShow()
+												setModalData(item.image)
+											}}
+										/>
+										<span>Category: {item.category}</span>
+										<span>Date: {moment(item.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</span>
+									</li>
+								</ul>
+							</li>
+						)}
+					</ul>
+				</li>
+			</ul>
+
 			<ModalImage
 				show={show}
 				setShow={setShow}

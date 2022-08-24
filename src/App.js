@@ -56,12 +56,14 @@ const App = () => {
 				setIsLoading={setIsLoading}
 			/>
 
-			<SortByControls
-				store={store}
-				setStore={setStore}
-				sortBy={sortBy}
-				setSortBy={setSortBy}
-			/>
+			{!showTreeList &&
+				<SortByControls
+					store={store}
+					setStore={setStore}
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+				/>
+			}
 
 			<Container>
 			{isLoading ?

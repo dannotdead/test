@@ -1,4 +1,46 @@
+.tree-list {
+    padding: 0;
+}
+
+.tree-list,
+.tree-list ul {
+	list-style-type: none;
+}
+
 .tree-image {
-    width: 50px;
-    cursor: pointer;
+	width: 50px;
+	cursor: pointer;
+}
+
+.tree-list-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.caret {
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    font-weight: 500;
+}
+
+.caret::before {
+	content: "\25B6";
+	color: black;
+	display: inline-block;
+	margin-right: 6px;
+}
+
+.caret-down::before {
+	transform: rotate(90deg);
+}
+
+.nested {
+	display: none;
+}
+
+.active {
+	display: block;
 }
