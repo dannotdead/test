@@ -7,6 +7,8 @@ import SortByControls from './components/SortByControls';
 import TreeList from './components/TreeList/TreeList';
 import CardList from './components/CardList';
 import {getData} from './utils/api';
+import Footer from './components/Footer/Footer';
+import './App.css';
 
 const App = () => {
 	const [store, setStore] = useState([])
@@ -42,7 +44,7 @@ const App = () => {
 	},[])
 
 	return (
-		<>
+		<div className='app-container'>
 			<NavBar />
 
 			<ViewControls
@@ -76,7 +78,9 @@ const App = () => {
 					/>
 				}
 			</Container>
-		</>
+
+			<Footer />
+		</div>
 	);
 }
 

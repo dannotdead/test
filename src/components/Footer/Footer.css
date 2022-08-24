@@ -1,0 +1,29 @@
+.footer {
+    position: sticky;
+    bottom: 0;
+    padding: 10px 0;
+    margin-top: auto;
+    background-color: #212529;
+    color: white;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-container i {
+    font-size: 12px;
+}
+
+.footer-container a {
+    text-decoration: none;
+    color: darkgray;
+}
+
+.footer-container a:hover {
+    color: dimgray;
+}
