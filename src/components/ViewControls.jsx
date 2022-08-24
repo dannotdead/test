@@ -13,9 +13,11 @@ const ViewControls = ({
 	setSortBy,
 	setIsLoading
 }) => {
-	const resetHandle = () => {
-		localStorage.clear();
-		getData(setStore, setIsLoading);
+	const resetHandle = async () => {
+		localStorage.clear()
+		const data = await getData()
+		setStore(data)
+		setIsLoading(false)
 		setDisabledItems(0)
 		setSortBy('default')
 	}
