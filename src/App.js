@@ -51,6 +51,7 @@ const App = () => {
 
       <ViewControls
         disabledItems={disabledItems}
+        showTreeList={showTreeList}
         setShowTreeList={setShowTreeList}
         setDisabledItems={setDisabledItems}
         setStore={setStore}

@@ -14,7 +14,7 @@ const SortByControls = ({ sortBy, setSortBy }) => {
         <FormGroup>
           <Form.Check
             inline
-            checked={sortBy === 'default'}
+            checked={sortBy === sortOptions.default}
             disabled
             label='Default'
             name='SortByControls'
