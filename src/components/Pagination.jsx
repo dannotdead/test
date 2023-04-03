@@ -7,7 +7,6 @@ const PaginationComponent = ({ itemsCount, itemsPerPage, currentPage, setCurrent
   const isCurrentPageLast = currentPage === pagesCount
 
   const changePage = (number) => {
-    console.log(number, currentPage)
     if (currentPage === number) return
     setCurrentPage(number)
   }
@@ -25,7 +24,6 @@ const PaginationComponent = ({ itemsCount, itemsPerPage, currentPage, setCurrent
   }
 
   const setLastPageAsCurrent = () => {
-    console.log(pagesCount)
     if (currentPage > pagesCount) {
       setCurrentPage(pagesCount)
     }
@@ -46,7 +44,6 @@ const PaginationComponent = ({ itemsCount, itemsPerPage, currentPage, setCurrent
           key={pageNumber}
           onClick={() => {
             onPageNumberClick(pageNumber)
-            // console.log(pageNumber, currentPage)
           }}
           active={pageNumber === currentPage}
         >
