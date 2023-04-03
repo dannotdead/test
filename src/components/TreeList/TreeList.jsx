@@ -1,20 +1,38 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import moment from 'moment'
 
 import ModalImage from '../ModalImage'
+import { getData } from '../../utils/api'
 
 import './TreeList.css'
 
-const TreeList = ({ store }) => {
+const TreeList = () => {
+  const [list, setList] = useState([])
   const [show, setShow] = useState(false)
   const [modalData, setModalData] = useState('')
 
-  const handleShow = () => setShow(true)
+  useEffect(() => {
+    getDataFromServer().then((data) => setList(data))
+  }, [])
 
   const handleClick = useCallback((event) => {
-    event.target.parentElement.querySelector('.nested').classList.toggle('active')
+    event.target.parentElement
+      .querySelector('.nested')
+      .classList.toggle('active')
     event.target.classList.toggle('caret-down')
   }, [])
+
+  const getDataFromServer = async () => {
+    try {
+      const dataFromServer = await getData()
+
+      return dataFromServer
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleShow = () => setShow(true)
 
   return (
     <>
@@ -24,10 +42,13 @@ const TreeList = ({ store }) => {
             Root Element
           </span>
           <ul className='nested'>
-            {store &&
-              store.map((item) => (
+            {list.length &&
+              list.map((item) => (
                 <li key={item.image}>
-                  <span className='caret' onClick={(event) => handleClick(event)}>
+                  <span
+                    className='caret'
+                    onClick={(event) => handleClick(event)}
+                  >
                     {item.image.split('/')[1]}
                   </span>
                   <ul className='nested'>
@@ -42,7 +63,12 @@ const TreeList = ({ store }) => {
                         }}
                       />
                       <span>Category: {item.category}</span>
-                      <span>Date: {moment(item.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                      <span>
+                        Date:{' '}
+                        {moment(item.timestamp).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}
+                      </span>
                     </li>
                   </ul>
                 </li>

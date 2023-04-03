@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container'
 import Spinner from 'react-bootstrap/Spinner'
 
 import NavBar from './components/NavBar/NavBar'
-import SortByControls from './components/SortByControls'
 import TreeList from './components/TreeList/TreeList'
 import CardList from './components/CardList'
 import { getData } from './utils/api'
@@ -62,7 +61,7 @@ const App = () => {
         {isLoading ? (
           <Spinner animation='border' className='d-flex m-auto' />
         ) : showTreeList ? (
-          <TreeList store={store} />
+          <TreeList />
         ) : (
           <CardList
             sortBy={sortBy}
