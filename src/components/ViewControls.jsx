@@ -27,7 +27,7 @@ const ViewControls = ({
 
   return (
     <Container>
-      <Form className='mb-3'>
+      <Form className='mb-3 w-100'>
         <Form.Label>View</Form.Label>
         <FormGroup>
           <Form.Check
@@ -49,7 +49,7 @@ const ViewControls = ({
           />
           <FormText>Disabled Items: {disabledItems}</FormText>
           {!showTreeList && (
-            <Button variant='danger' className='float-end' onClick={resetHandle}>
+            <Button variant='danger' className='float-end ml-auto' onClick={resetHandle}>
               Reset
             </Button>
           )}

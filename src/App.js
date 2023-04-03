@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container'
 import Spinner from 'react-bootstrap/Spinner'
 
 import NavBar from './components/NavBar/NavBar'
-import ViewControls from './components/ViewControls'
 import SortByControls from './components/SortByControls'
 import TreeList from './components/TreeList/TreeList'
 import CardList from './components/CardList'
@@ -19,6 +18,7 @@ const App = () => {
   const [sortBy, setSortBy] = useState(sortOptions.default)
   const [showTreeList, setShowTreeList] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
 
   const filterData = async () => {
     try {
@@ -47,19 +47,16 @@ const App = () => {
 
   return (
     <div className='app-container'>
-      <NavBar />
-
-      <ViewControls
+      <NavBar
         disabledItems={disabledItems}
         showTreeList={showTreeList}
         setShowTreeList={setShowTreeList}
         setDisabledItems={setDisabledItems}
         setStore={setStore}
+        sortBy={sortBy}
         setSortBy={setSortBy}
         setIsLoading={setIsLoading}
       />
-
-      {!showTreeList && <SortByControls sortBy={sortBy} setSortBy={setSortBy} />}
 
       <Container>
         {isLoading ? (
@@ -70,13 +67,14 @@ const App = () => {
           <CardList
             sortBy={sortBy}
             store={store}
+            currentPage={currentPage}
             setStore={setStore}
             setDisabledItems={setDisabledItems}
           />
         )}
       </Container>
 
-      <Footer />
+      <Footer totalItems={store.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )
 }

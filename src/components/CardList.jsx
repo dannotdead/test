@@ -1,18 +1,11 @@
-import React, { useMemo, useState } from 'react'
-import Container from 'react-bootstrap/Container'
+import React, { useMemo } from 'react'
 
-import PaginationComponent from './Pagination'
 import CardItem from './CardItem/CardItem'
 import { ITEMS_PER_PAGE } from '../utils/const'
 import { sortData } from '../utils/sortData'
 
-const CardList = ({ sortBy, store, setStore, setDisabledItems }) => {
-  const [totalItems, setTotalItems] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
-
+const CardList = ({ sortBy, store, currentPage, setStore, setDisabledItems }) => {
   const list = useMemo(() => {
-    setTotalItems(store.length)
-
     return sortData(store, sortBy).slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
       (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
@@ -32,16 +25,6 @@ const CardList = ({ sortBy, store, setStore, setDisabledItems }) => {
           />
         ))}
       </div>
-      <Container>
-        <div className='d-flex justify-content-center'>
-          <PaginationComponent
-            itemsCount={totalItems}
-            itemsPerPage={ITEMS_PER_PAGE}
-            currentPage={currentPage}
-            setCurrentPage={(page) => setCurrentPage(page)}
-          />
-        </div>
-      </Container>
     </>
   )
 }
