@@ -88,10 +88,9 @@ const TreeList = () => {
                               />
                               <span>Category: {item.category}</span>
                               <span>
-                                Date:{' '}
-                                {moment(item.timestamp).format(
+                                {`Date: ${moment(item.timestamp).format(
                                   'MMMM Do YYYY, h:mm:ss a'
-                                )}
+                                )}`}
                               </span>
                             </li>
                           </ul>
