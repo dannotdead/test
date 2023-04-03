@@ -27,8 +27,6 @@ const CardItem = ({ img, store, setStore, setDisabledItems }) => {
     localStorage.setItem('DeletedItems', JSON.stringify(data))
   }
 
-  console.log(img)
-
   return (
     <Col>
       <Card>
