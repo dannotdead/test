@@ -61,7 +61,7 @@ const App = () => {
         {isLoading ? (
           <Spinner animation='border' className='d-flex m-auto' />
         ) : showTreeList ? (
-          <TreeList store={store} />
+          <TreeList />
         ) : (
           <CardList
             sortBy={sortBy}
@@ -73,7 +73,12 @@ const App = () => {
         )}
       </Container>
 
-      <Footer totalItems={store.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Footer
+        showTreeList={showTreeList}
+        totalItems={store.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   )
 }
