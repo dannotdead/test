@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import Pagination from 'react-bootstrap/Pagination'
 
+import './Pagination.css'
+
 const PaginationComponent = ({ itemsCount, itemsPerPage, currentPage, setCurrentPage }) => {
   const pagesCount = Math.ceil(itemsCount / itemsPerPage)
   const isCurrentPageFirst = currentPage === 1
@@ -67,7 +69,7 @@ const PaginationComponent = ({ itemsCount, itemsPerPage, currentPage, setCurrent
   }, [pagesCount])
 
   return (
-    <Pagination>
+    <Pagination className='pagination-container'>
       <Pagination.Prev onClick={onPreviousPageClick} disabled={isCurrentPageFirst} />
       {pageNumbers}
       <Pagination.Next onClick={onNextPageClick} disabled={isCurrentPageLast} />

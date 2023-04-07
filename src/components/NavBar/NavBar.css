@@ -1,7 +1,14 @@
 .nav-bar {
 	position: sticky;
-	display: flex;
-	flex-direction: column;
 	margin-bottom: 25px;
 	color: white;
+}
+
+.nav-bar__container {
+	justify-content: initial !important;
+	gap: 32px;
+}
+
+.nav-bar__disabled-items {
+	margin-left: auto;
 }

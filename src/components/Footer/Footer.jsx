@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
-import PaginationComponent from '../Pagination'
+import PaginationComponent from '../Pagination/Pagination'
 import { ITEMS_PER_PAGE } from '../../constants/pagination'
 import { gitHubLink } from '../../constants/links'
 
