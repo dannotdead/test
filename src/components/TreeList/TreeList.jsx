@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import ModalImage from '../ModalImage'
 import { getData } from '../../utils/api'
+import { formatBytes } from '../../utils/formatBytes'
 
 import './TreeList.css'
 
@@ -28,9 +29,7 @@ const TreeList = () => {
   }, [])
 
   const handleClick = useCallback((event) => {
-    event.target.parentElement
-      .querySelector('.nested')
-      .classList.toggle('active')
+    event.target.parentElement.querySelector('.nested').classList.toggle('active')
     event.target.classList.toggle('caret-down')
   }, [])
 
@@ -58,10 +57,7 @@ const TreeList = () => {
             {Object.entries(tree).map(([category, list], index) => {
               return (
                 <li key={index}>
-                  <span
-                    className='caret'
-                    onClick={(event) => handleClick(event)}
-                  >
+                  <span className='caret' onClick={(event) => handleClick(event)}>
                     {category}
                   </span>
 
@@ -69,10 +65,7 @@ const TreeList = () => {
                     {list.length &&
                       list.map((item) => (
                         <li key={item.image}>
-                          <span
-                            className='caret'
-                            onClick={(event) => handleClick(event)}
-                          >
+                          <span className='caret' onClick={(event) => handleClick(event)}>
                             {item.image.split('/')[1]}
                           </span>
                           <ul className='nested'>
@@ -86,12 +79,12 @@ const TreeList = () => {
                                   setModalData(item.image)
                                 }}
                               />
-                              <span>Category: {item.category}</span>
                               <span>
                                 {`Date: ${moment(item.timestamp).format(
                                   'MMMM Do YYYY, h:mm:ss a'
                                 )}`}
                               </span>
+                              <span>File size: {formatBytes(item.filesize)}</span>
                             </li>
                           </ul>
                         </li>
