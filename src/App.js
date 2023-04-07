@@ -12,6 +12,7 @@ import { sortOptions } from './constants/sortOptions'
 import './App.css'
 
 const App = () => {
+  const [tree, setTree] = useState({})
   const [store, setStore] = useState([])
   const [disabledItems, setDisabledItems] = useState(0)
   const [sortBy, setSortBy] = useState(sortOptions.default)
@@ -24,6 +25,7 @@ const App = () => {
       const data = JSON.parse(localStorage.getItem('DeletedItems'))
       const dataFromServer = await getData()
       let tempArr = [...dataFromServer]
+
       if (data) {
         setDisabledItems(data.length)
         data.forEach((item) => {
@@ -37,8 +39,23 @@ const App = () => {
     }
   }
 
+  const addFormattedDataToTree = (data) => {
+    let tempTree = {}
+
+    data.forEach((item) => {
+      if (tempTree.hasOwnProperty(item.category)) {
+        tempTree[item.category] = [...tempTree[item.category], item]
+      } else {
+        tempTree[item.category] = [item]
+      }
+    })
+
+    setTree(tempTree)
+  }
+
   useEffect(() => {
     filterData().then((data) => {
+      addFormattedDataToTree(data)
       setStore(data)
       setIsLoading(false)
     })
@@ -61,7 +78,7 @@ const App = () => {
         {isLoading ? (
           <Spinner animation='border' className='d-flex m-auto' />
         ) : showTreeList ? (
-          <TreeList />
+          <TreeList tree={tree} />
         ) : (
           <CardList
             sortBy={sortBy}

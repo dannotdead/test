@@ -1,47 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import moment from 'moment'
 
 import ModalImage from '../ModalImage'
-import { getData } from '../../utils/api'
 import { formatBytes } from '../../utils/formatBytes'
 
 import './TreeList.css'
 
-const TreeList = () => {
-  const [tree, setTree] = useState({})
+const TreeList = ({ tree }) => {
   const [show, setShow] = useState(false)
   const [modalData, setModalData] = useState('')
-
-  useEffect(() => {
-    let tempTree = {}
-
-    getDataFromServer().then((data) => {
-      data.forEach((item) => {
-        if (tempTree.hasOwnProperty(item.category)) {
-          tempTree[item.category] = [...tempTree[item.category], item]
-        } else {
-          tempTree[item.category] = [item]
-        }
-      })
-
-      setTree(tempTree)
-    })
-  }, [])
 
   const handleClick = useCallback((event) => {
     event.target.parentElement.querySelector('.nested').classList.toggle('active')
     event.target.classList.toggle('caret-down')
   }, [])
-
-  const getDataFromServer = async () => {
-    try {
-      const dataFromServer = await getData()
-
-      return dataFromServer
-    } catch (err) {
-      console.error(err)
-    }
-  }
 
   const handleShow = () => setShow(true)
 
