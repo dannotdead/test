@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import moment from 'moment'
 
 import ModalImage from '../ModalImage'
+import { formatBytes } from '../../utils/formatBytes'
 
 import './CardItem.css'
 
@@ -42,8 +43,9 @@ const CardItem = ({ img, store, setStore, setDisabledItems }) => {
         <Card.Body>
           <Card.Title>{img.image.split('/')[1]}</Card.Title>
           <Card.Subtitle>Category: {img.category}</Card.Subtitle>
-          <Card.Text>Date: {dateTitle}</Card.Text>
-          <Card.Text>File size: {img.filesize}</Card.Text>
+          <span>Date: {dateTitle}</span>
+          <br />
+          <span>File size: {formatBytes(img.filesize)}</span>
         </Card.Body>
         <div className='card-close-btn'>
           <CloseButton onClick={() => deleteItem(img.image)} />
