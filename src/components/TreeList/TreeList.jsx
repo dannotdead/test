@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import moment from 'moment'
 
-import ModalImage from '../ModalImage'
+import ModalImage from '../ModalImage/ModalImage'
 import { formatBytes } from '../../utils/formatBytes'
 
 import './TreeList.css'

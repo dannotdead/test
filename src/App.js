@@ -26,6 +26,8 @@ const App = () => {
       const dataFromServer = await getData()
       let tempArr = [...dataFromServer]
 
+      addFormattedDataToTree(dataFromServer)
+
       if (data) {
         setDisabledItems(data.length)
         data.forEach((item) => {
@@ -55,7 +57,6 @@ const App = () => {
 
   useEffect(() => {
     filterData().then((data) => {
-      addFormattedDataToTree(data)
       setStore(data)
       setIsLoading(false)
     })

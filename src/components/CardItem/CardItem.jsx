@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import moment from 'moment'
 
-import ModalImage from '../ModalImage'
+import ModalImage from '../ModalImage/ModalImage'
 import { formatBytes } from '../../utils/formatBytes'
 
 import './CardItem.css'

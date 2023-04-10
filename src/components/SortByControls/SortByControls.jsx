@@ -11,8 +11,6 @@ const SortByControls = ({ sortBy, setSortBy }) => {
   return (
     <Container>
       <Form>
-        <Form.Label>Sort By</Form.Label>
-
         <FormGroup>
           <Form.Check
             inline

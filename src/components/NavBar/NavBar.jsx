@@ -1,10 +1,11 @@
 import React from 'react'
-import { Button, Container, FormText, NavDropdown, Navbar } from 'react-bootstrap'
+import { Button, Container, FormText, Navbar } from 'react-bootstrap'
 
 import SortByControls from '../SortByControls/SortByControls'
 import ViewControls from '../ViewControls'
 import { getData } from '../../utils/api'
 import { sortOptions } from '../../constants/sortOptions'
+import Dropdown from '../Dropdown/Dropdown'
 
 import './NavBar.css'
 
@@ -30,7 +31,7 @@ const NavBar = ({
   return (
     <Navbar bg='dark' variant='dark' sticky='top' className='nav-bar'>
       <Container className='nav-bar__container'>
-        <NavDropdown title='View'>
+        <Dropdown title='View'>
           <ViewControls
             disabledItems={disabledItems}
             showTreeList={showTreeList}
@@ -40,12 +41,12 @@ const NavBar = ({
             setSortBy={setSortBy}
             setIsLoading={setIsLoading}
           />
-        </NavDropdown>
+        </Dropdown>
 
         {!showTreeList && (
-          <NavDropdown title='Sort By'>
+          <Dropdown title='Sort By'>
             <SortByControls sortBy={sortBy} setSortBy={setSortBy} />
-          </NavDropdown>
+          </Dropdown>
         )}
 
         <FormText className='nav-bar__disabled-items'>Disabled Items: {disabledItems}</FormText>
